@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+	<div class = "modal" id = "modal">
+		<h3 id = "prompt">Введите номер месяца</h3>
+		<input type="text" id="user-input">
+		<button onclick="runTask()">OK</button>
+		<button onclick="closeModal()">Отмена</button>
+		<div class="output" id="output">Здесь будет результат</div>
+	</div>
+	<button onclick="openModal(2)">
+		Задание 1.2.2
+	</button>
+	<button onclick="openModal(3)">
+		Задание 1.2.3
+	</button>
+	<button onclick="openModal(4)">
+		Задание 1.2.4
+	</button>
+	<button onclick="openModal(5)">
+		Задание 1.2.5
+	</button>
+	<button onclick="openModal(6)">
+		Задание 1.2.6
+	</button>
+	<script src="script.js"></script>
+</body>
+</html>
