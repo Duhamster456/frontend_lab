@@ -9,6 +9,12 @@ runSubs[3] = runSub3;
 runSubs[4] = runSub4;
 runSubs[5] = runSub5;
 runSubs[6] = runSub6;
+runSubs[7] = runSub7;
+runSubs[8] = runSub8;
+runSubs[9] = runSub9;
+runSubs[10] = runSub10;
+runSubs[11] = runSub11;
+runSubs[12] = runSub12;
 
 let prompts = Array();
 prompts[2] = "Введите номер месяца";
@@ -16,6 +22,12 @@ prompts[3] = "Введите количество простых чисел";
 prompts[4] = "Введите число для прибавления";
 prompts[5] = "Введите список слов, разделённых запятыми";
 prompts[6] = "Введите строку, программа проверит, палиндром ли она";
+prompts[7] = "Введите список натуральных чисел, программа их отсортирует";
+prompts[8] = "Введите список натуральных чисел, программа вернёт остатки от деления на 5";
+prompts[9] = "Введите список чисел, программа вернёт медиану";
+prompts[10] = "Введите START, программа вернёт медиану списка из 4, 60, 500, 34";
+prompts[11] = "Введите строку со скобками (), стековая машина проверит корректность";
+prompts[12] = "Введите JSON, в программе произойдёт глубокое копирование";
 
 function refresh(){
 	input.value = '';
@@ -115,7 +127,7 @@ function runSub4(input){
 		return "Некорректный ввод";
 	}
 	Counter.add(value);
-	return Counter.value;
+	return Counter.count;
 }
 
 function runSub5(input){
@@ -124,4 +136,67 @@ function runSub5(input){
 
 function runSub6(input){
 	return input === input.split('').reverse().join('') ? 'Да' : 'Нет';
+}
+
+function runSub7(input){
+	let strArr = input.split(/\D+/);
+	let numArr = strArr.map(Number);
+	numArr.sort((a, b) => a - b);
+	let res = numArr.map(String);
+	res = res.join(", ");
+	return res;
+}
+
+function runSub8(input){
+	let strArr = input.split(/\D+/);
+	let numArr = strArr.map(Number);
+	numArr = numArr.map((a) => a % 5);
+	let res = numArr.map(String);
+	res = res.join(", ");
+	return res;
+}
+
+function median(...args){
+	args.sort((a, b) => a - b);
+	const mid = Math.floor(args.length / 2);
+
+	if(args.length % 2 === 0){
+		return (args[mid - 1] + args[mid]) / 2;
+	}
+	else{
+		return args[mid];
+	}
+}
+
+function runSub9(input){
+	let strArr = input.split(/\D+/);
+	let numArr = strArr.map(Number);
+	return median(...numArr);
+}
+
+function runSub10(input){
+	if (input !== "START"){
+		alert("просьба ввести START")
+	}
+	return median(4, 60, 500, 34);
+}
+
+const yes = "Правильная";
+const no = "Неправильная";
+
+function runSub11(input){
+	let stack = [];
+	for (let symbol of input) {
+		if (symbol === '(') {
+			stack.push('A');
+		} else if (symbol === ')') {
+			if (stack.length === 0) return no;
+			stack.pop();
+		}
+	}
+	return stack.length === 0 ? yes : no;
+}
+
+function runSub12(input){
+	return JSON.parse(JSON.stringify(input));
 }
