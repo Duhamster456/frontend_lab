@@ -19,8 +19,10 @@ function loadOneImage() {
 	});
 }
 
-let promise = Promise.resolve();
-
-for(let i = 0; i < 5; i++) {
-	promise = promise.then(() => loadOneImage());
+async function loadSequential(){
+	for(let i = 0; i < 5; i++) {
+		await loadOneImage();
+	}
 }
+
+loadSequential();
