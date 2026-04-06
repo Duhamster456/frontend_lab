@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Синий круг</title>
+    <style>
+		.circle {
+			background-color: blue;
+			position: fixed;
+			border-radius: 100%;
+			width: 30px;
+			height: 30px;
+		}
+	</style>
+</head>
+<body>
+    <div class="circle">
+    </div>
+	<script>
+		const circle = document.getElementsByClassName("circle")[0];
+
+		document.addEventListener('mousemove', function(event) {
+			circle.style.top = `${event.clientY}px`;
+			circle.style.left = `${event.clientX}px`;
+		});
+	</script>
+</body>
+</html>
