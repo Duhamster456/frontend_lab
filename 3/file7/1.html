@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>HTML и CSS</title>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="1.css">
+	</head>
+	<body>
+		<h1>Добро пожаловать!</h1>
+		<p>
+			<i class="letter-wrapper">Приветствуем</i>
+			<u class="letter-wrapper">вас</u>
+			<b class="letter-wrapper">в нашем</b>
+			<a href="example.com">магазине</a>
+		</p>
+		<p>&lt;h1&gt;Теорема Пифагора&lt;/h1&gt;: <i>c<sup>2</sup> = a<sup>2</sup> + b<sup>2</sup></i></p>
+		<table border="1" cellspacing="0">
+			<tr>
+				<td colspan="2">Информация</td>
+			</tr>
+			<tr>
+				<td>Старая цена: <s>1000</s> ₽</td>
+				<td>Новая цена: 500 ₽</td>
+			</tr>
+		</table>
+	</body>
+	<script>
+		document.addEventListener('selectstart', (e) => {
+			e.preventDefault();
+			return false;
+		});
+		document.addEventListener('copy', (e) => {
+			e.preventDefault();
+			return false;
+		});
+		document.addEventListener('contextmenu', (e) => {
+			e.preventDefault();
+			return false;
+		});
+
+		document.querySelectorAll('.letter-wrapper').forEach(wrapper => {
+			const text = wrapper.innerText;
+			const letters = text.split('');
+			
+			wrapper.innerHTML = letters
+				.map(letter => {
+				const tagName = wrapper.tagName.toLowerCase();
+				return `<${tagName} class="letter">${letter}</${tagName}>`;
+				})
+				.join('');
+		});
+	</script>
+</html>

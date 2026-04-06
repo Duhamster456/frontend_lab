@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Кликер</title>
+		<meta charset="UTF-8">
+	</head>
+	<body>
+		<h1 id="score">0</h1>
+		<button onclick="incr()">Нажмите чтобы +1</button>
+		<h1 id="average"></h1>
+	</body>
+	<script>
+		const display = document.getElementById("score");
+		const averageDisplay = document.getElementById("average");
+		const startDate = new Date();
+		let clickCount = 0;
+
+		if(localStorage.getItem("score") == null){
+			localStorage.setItem("score", "0")
+		}
+		
+		display.textContent = localStorage.getItem("score");
+
+		setInterval(() => {
+			const msDiff = new Date() - startDate;
+			const avg = clickCount * 1000 / msDiff;
+			averageDisplay.textContent = `Среднее количество кликов в секунду: ${avg.toFixed(2)}`
+		}, 20);
+
+		function incr(){
+			let score = localStorage.getItem("score");
+			score = parseInt(score);
+			score++;
+			clickCount++;
+			score = String(score);
+			display.textContent = score;
+			localStorage.setItem("score", score);
+		}
+	</script>
+</html>

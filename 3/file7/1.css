@@ -1,0 +1,6 @@
+.letter-wrapper .letter:nth-child(even) {
+  color: red;
+}
+.letter-wrapper .letter:nth-child(odd) {
+  color: blue;
+}

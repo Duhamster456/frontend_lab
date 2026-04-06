@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Калькулятор</title>
+		<meta charset="UTF-8">
+	</head>
+	<body>
+		<h1 id="display"></h1>
+		<button onclick="action('1')">1</button>
+		<button onclick="action('2')">2</button>
+		<button onclick="action('3')">3</button>
+		<button onclick="action('4')">4</button>
+		<button onclick="action('5')">5</button>
+		<button onclick="action('6')">6</button>
+		<button onclick="action('7')">7</button>
+		<button onclick="action('8')">8</button>
+		<button onclick="action('9')">9</button>
+		<button onclick="action('0')">0</button>
+		<button onclick="action('+')">+</button>
+		<button onclick="action('-')">-</button>
+		<button onclick="action('*')">*</button>
+		<button onclick="action('/')">/</button>
+		<button onclick="action('=')">=</button>
+		<button onclick="action('C')">C</button>
+		<button onclick="action('(')">(</button>
+		<button onclick="action(')')">)</button>
+	</body>
+	<script>
+		const display = document.getElementById("display");
+
+		const opPriority = {
+			"+": 1,
+			"-": 1,
+			"*": 2,
+			"/": 2
+		}
+		let line = "";
+
+		function isNumber(char) {
+			return !isNaN(Number(char));
+		}
+
+		function isOperator(char) {
+			return char in opPriority;
+		}
+
+		function checkBrackets(line){
+			let stack = [];
+			for (let symbol of line) {
+				if (symbol === '(') {
+					stack.push('A');
+				} else if (symbol === ')') {
+					if (stack.length === 0) return false;
+					stack.pop();
+				}
+			}
+			return stack.length === 0 ? true : false;
+		}
+
+		function checkSymbols(line){
+			for (char of line){
+				if (!("1234567890+-*/()".includes(char))){
+					return false;
+				}
+			}
+			return true;
+		}
+
+		function toRPN(line) {
+			const stack = [];
+			let rpn = [];
+			
+			let i = 0;
+			while (i < line.length) {
+				let char = line[i];
+				
+				if (isNumber(char)) {
+					let num = 0;
+					while (i < line.length && isNumber(line[i])) {
+						num = num * 10 + parseInt(line[i]);
+						i++;
+					}
+					rpn.push(num);
+					continue;
+				}
+				
+				if (isOperator(char)) {
+					while (stack.length > 0) {
+						const top = stack[stack.length - 1];
+						if (!isOperator(top)) break;
+						if (opPriority[top] < opPriority[char]) break;
+						rpn.push(stack.pop());
+					}
+					stack.push(char);
+					i++;
+					continue;
+				}
+				
+				if (char === '(') {
+					stack.push(char);
+					i++;
+					continue;
+				}
+				
+				if (char === ')') {
+					while (stack.length > 0) {
+						const top = stack.pop();
+						if (top === '(') break;
+						rpn.push(top);
+					}
+					i++;
+					continue;
+				}
+				
+				if (char === ' ') {
+					i++;
+					continue;
+				}
+				
+				i++;
+			}
+			
+			while (stack.length > 0) {
+				rpn.push(stack.pop());
+			}
+			
+			return rpn;
+		}
+
+		function evalRPN(rpn){
+			const stack = Array();
+			for(const token of rpn){
+				if(isNumber(token)){
+					stack.push(token);
+					continue;
+				}
+
+				if(isOperator(token)){
+					const arg2 = stack.pop();
+					const arg1 = stack.pop();
+
+					switch(token) {
+						case '+': stack.push(arg1 + arg2); break;
+						case '-': stack.push(arg1 - arg2); break;
+						case '*': stack.push(arg1 * arg2); break;
+						case '/': stack.push(arg1 / arg2); break;
+            		}
+				}
+			}
+
+			return stack.pop();
+		}
+
+		function flush(){
+			display.textContent = "";
+		}
+
+		function action(symbol){
+			if(!checkSymbols(display.textContent)){
+				flush();
+			}
+			switch(symbol){
+				case '=':
+					if(!checkBrackets(display.textContent)){
+						display.textContent = "Скобки расставлены неправильно";
+					}
+					else{
+						display.textContent = evalRPN(toRPN(display.textContent));
+					}
+					break;
+				case 'C':
+					flush();
+					break;
+				default:
+					display.textContent += symbol;
+					break;
+			}
+		}
+	</script>
+</html>
