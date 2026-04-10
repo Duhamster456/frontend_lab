@@ -1,14 +1,58 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+	width: 700px;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+body > * {
+  margin-bottom: 10px;
+}
+
 .logo {
-	height: 20px;
-	color: gray;
+    display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 60px;
+}
+.logo h1 {
+    margin: 0;
 }
 
 .menu {
 	display: grid;
 	grid-template-columns: repeat(5, 1fr);
 	background-color: gainsboro;
-	padding: 0 20%;
+	padding: 0 25%;
 	align-items: center;
 	height: 60px;
-	width: 300px;
+}
+
+.choice {
+	color: purple;
+	text-decoration: underline;
+}
+
+.characteristics, .column {
+    display: flex;
+    background-color: gainsboro;
+    height: 140px;
+    justify-content: center;
+    padding-top: 10px;
+}
+
+.columns {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 10px;
+}
+
+.aka-footer {
+    display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 60px;
+	background-color: gainsboro;
 }
