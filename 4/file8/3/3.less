@@ -1,0 +1,76 @@
+// Миксины
+.flex-center() {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bg-gray() {
+  background-color: gainsboro;
+}
+
+// Основной код
+* {
+  box-sizing: border-box;
+}
+
+body {
+  width: 700px;
+  font-family: Arial, Helvetica, sans-serif;
+
+  > * {
+    margin-bottom: 10px;
+  }
+}
+
+.logo {
+  .flex-center();
+  height: 60px;
+
+  h1 {
+    margin: 0;
+  }
+}
+
+.menu {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0;
+  .bg-gray();
+  padding: 0 25%;
+  height: 60px;
+  align-items: center;
+}
+
+.choice {
+  color: purple;
+  text-decoration: underline;
+}
+
+.characteristics {
+  .bg-gray();
+  display: flex;
+  height: 140px;
+  justify-content: center;
+  padding-top: 10px;
+}
+
+.columns {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.column {
+  display: flex;
+  .bg-gray();
+  height: 140px;
+  justify-content: center;
+  padding-top: 10px;
+}
+
+.aka-footer {
+  .flex-center();
+  .bg-gray();
+  height: 60px;
+}

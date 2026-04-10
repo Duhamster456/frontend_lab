@@ -1,0 +1,78 @@
+@mixin flex-center{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+@mixin grid-repeat($columns, $gap: 0){
+	display: grid;
+	grid-template-columns: repeat($columns, 1fr);
+	gap: $gap;
+}
+
+@mixin bg-gray{
+	background-color: gainsboro;
+}
+  
+* {
+	box-sizing: border-box;
+}
+
+body {
+	width: 700px;
+	font-family: Arial, Helvetica, sans-serif;
+
+	> *{
+		margin-bottom: 10px;
+	}
+}
+  
+
+.logo{
+	@include flex-center;
+	height: 60px;
+}
+
+h1{
+	margin: 0
+}
+
+.menu {
+	@include grid-repeat(5);
+	@include bg-gray;
+	padding: 0 25%;
+	height: 60px;
+	align-items: center;
+}
+
+.choice {
+	color: purple;
+	text-decoration: underline;
+}
+
+.characteristics {
+	@include bg-gray;
+	display: flex;
+	height: 140px;
+	justify-content: center;
+	padding-top: 10px;
+}
+  
+.columns {
+	@include grid-repeat(3, 10px);
+}
+
+.column {
+	display: flex;
+	@include bg-gray;
+	height: 140px;
+	justify-content: center;
+	padding-top: 10px;
+}
+
+.aka-footer {
+	@include flex-center;
+	@include bg-gray;
+	height: 60px;
+}
+  

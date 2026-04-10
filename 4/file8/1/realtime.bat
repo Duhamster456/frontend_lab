@@ -1,0 +1,1 @@
+sass --watch input.sass output.css

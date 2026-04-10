@@ -1,0 +1,62 @@
+=flex-center
+	display: flex
+	align-items: center
+	justify-content: center
+
+=grid-repeat($columns, $gap: 0)
+	display: grid
+	grid-template-columns: repeat($columns, 1fr)
+	gap: $gap
+
+=bg-gray
+	background-color: gainsboro
+
+*
+	box-sizing: border-box
+
+body
+	width: 700px
+	font-family: Arial, Helvetica, sans-serif
+
+	> *
+		margin-bottom: 10px
+
+.logo
+	+flex-center
+	height: 60px
+
+	h1
+		margin: 0
+
+.menu
+	+grid-repeat(5)
+	+bg-gray
+	padding: 0 25%
+	height: 60px
+	align-items: center
+
+.choice
+	color: purple
+	text-decoration: underline
+
+.characteristics
+	+bg-gray
+	display: flex
+	height: 140px
+	justify-content: center
+	padding-top: 10px
+
+.columns
+	+grid-repeat(3, 10px)
+
+.column
+	display: flex
+	+bg-gray
+	height: 140px
+	justify-content: center
+	padding-top: 10px
+
+.aka-footer
+	+flex-center
+	+bg-gray
+	height: 60px

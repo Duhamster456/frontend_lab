@@ -1,0 +1,9 @@
+@numbers-count: 100;
+
+.loop(@i) when (@i <= @numbers-count) {
+	#id-@{i} {
+		color: rgb(@i, 256 - @i, 0);
+	}
+	.loop(@i + 1);
+}
+.loop(1);

@@ -1,0 +1,58 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  width: 700px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+body > * {
+  margin-bottom: 10px;
+}
+.logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 60px;
+}
+.logo h1 {
+  margin: 0;
+}
+.menu {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0;
+  background-color: gainsboro;
+  padding: 0 25%;
+  height: 60px;
+  align-items: center;
+}
+.choice {
+  color: purple;
+  text-decoration: underline;
+}
+.characteristics {
+  background-color: gainsboro;
+  display: flex;
+  height: 140px;
+  justify-content: center;
+  padding-top: 10px;
+}
+.columns {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+.column {
+  display: flex;
+  background-color: gainsboro;
+  height: 140px;
+  justify-content: center;
+  padding-top: 10px;
+}
+.aka-footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: gainsboro;
+  height: 60px;
+}
