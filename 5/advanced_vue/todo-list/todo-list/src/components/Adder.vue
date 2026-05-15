@@ -14,8 +14,8 @@ const emitAddNote = () => {
 		<input 
 			ref="inputRef"
 			type="text" 
-			placeholder="Введите текст"
+			placeholder="Note text"
 		>
-		<button class="add-button" @click="emitAddNote">Добавить</button>
+		<button class="add-button" @click="emitAddNote">Add</button>
 	</div>
 </template>
